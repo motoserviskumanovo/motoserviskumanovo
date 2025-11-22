@@ -20,6 +20,16 @@ nav a {
     font-weight: bold;
 }
 
+.logo-link {
+    text-decoration: none;      /* remove underline */
+    color: inherit;             /* keep the same color as h1 */
+}
+
+.logo-link h1 {
+    margin: 0;                  /* keep spacing clean */
+    cursor: pointer;            /* show pointer on hover */
+}
+
 .section {
     max-width: 800px;
     margin: 40px auto;
@@ -70,10 +80,9 @@ nav a {
 }
 
 footer {
-    background: #15317E;
+    background: #ff0000;
     color: white;
     text-align: center;
     padding: 20px;
     margin-top: 40px;
-
 }
