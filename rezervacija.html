@@ -16,59 +16,72 @@
     </header>
 
     <section id="rezervacija" class="section">
-    <h2>Закажи сервис</h2>
-  <form action="" onsubmit="sendEmail(); return false;" class="reservation-form">
-    <label for="ime">Име и Презиме:</label>
-    <input type="text" id="ime" required>
+<h2>Закажи сервис</h2>
+<form onsubmit="sendEmail(); return false;" class="reservation-form">
+<label for="ime">Име и Презиме:</label>
+<input type="text" id="ime" required />
 
-    <label for="email">Е-пошта:</label>
-    <input type="email" id="email" required>
 
-    <label for="telefon">Телефон:</label>
-    <input type="tel" id="telefon" required>
+<label for="email">Е-пошта:</label>
+<input type="email" id="email" required />
 
-    <label for="datum">Датум на закажување:</label>
-    <input type="date" id="datum" required>
 
-    <label for="tip">Тип на сервис:</label>
-    <select id="tip">
-        <option value="Редовен сервис">Редовен сервис</option>
-        <option value="Поправка">Поправка</option>
-        <option value="Дијагностика">Дијагностика</option>
-    </select>
+<label for="telefon">Телефон:</label>
+<input type="tel" id="telefon" required />
 
-	<label for="marka">Марка и модел:</label>
-    	<input type="text" id="text" required>
 
-    <label for="poraka">Дополнителна информација:</label>
-    <textarea id="poraka"></textarea>
+<label for="datum">Датум на закажување:</label>
+<input type="date" id="datum" required />
 
-    <button type="submit">Закажи</button>
+
+<label for="marka_model">Марка и Модел на мотор:</label>
+<input type="text" id="marka_model" required />
+
+
+<label for="тип">Тип на сервис:</label>
+<select id="тип">
+<option value="редовен">Редовен сервис</option>
+<option value="поправка">Поправка</option>
+<option value="дијагностика">Дијагностика</option>
+</select>
+
+
+<label for="порака">Дополнителни информации:</label>
+<textarea id="порака"></textarea>
+
+
+<button type="submit">Закажи</button>
 </form>
+</section>
+
 
 <script>
 function sendEmail() {
-    const emailTo = "motoserviskumanovo@gmail.com";  // <-- PUT YOUR EMAIL HERE
+const emailTo = "youremail@example.com"; // заменете со вашата е-пошта
 
-    const ime = document.getElementById("ime").value;
-    const email = document.getElementById("email").value;
-    const telefon = document.getElementById("telefon").value;
-    const datum = document.getElementById("datum").value;
-    const tip = document.getElementById("tip").value;
-    const marka = document.getElementById("marka").value;
-    const poraka = document.getElementById("poraka").value;
 
-    const subject = "Ново Закажување за Сервис";
-    const body = 
-        "Име и Презиме: " + ime + "%0D%0A" +
-        "Е-пошта: " + email + "%0D%0A" +
-        "Телефон: " + telefon + "%0D%0A" +
-        "Датум: " + datum + "%0D%0A" +
-        "Тип на сервис: " + tip + "%0D%0A" +
-	"Марка и модел: " + marka; +
-        "Порака: " + poraka;
+const ime = document.getElementById("ime").value;
+const email = document.getElementById("email").value;
+const telefon = document.getElementById("telefon").value;
+const datum = document.getElementById("datum").value;
+const marka_model = document.getElementById("marka_model").value;
+const tip = document.getElementById("тип").value;
+const poraka = document.getElementById("порака").value;
 
-    window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+
+const subject = encodeURIComponent("Ново закажување за сервис");
+const body = encodeURIComponent(
+`Име и Презиме: ${ime}\n` +
+`Е-пошта: ${email}\n` +
+`Телефон: ${telefon}\n` +
+`Датум: ${datum}\n` +
+`Марка и Модел: ${marka_model}\n` +
+`Тип на сервис: ${tip}\n` +
+`Порака: ${poraka}`
+);
+
+
+window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
 }
 </script>
 
