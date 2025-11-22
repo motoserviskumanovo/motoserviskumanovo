@@ -9,8 +9,8 @@
 <body>
     <header>
         <a href="index.html" class="logo-link">
-    <h1>Мото Сервис Kumanovo</h1>
-</a>
+            <h1>Мото Сервис Kumanovo</h1>
+        </a>
         <nav>
             <a href="index.html">Почетна</a>
             <a href="rezervacija.html">Закажи</a>
@@ -18,76 +18,57 @@
     </header>
 
     <section id="rezervacija" class="section">
-<h2>Закажи сервис</h2>
-<form onsubmit="sendEmail(); return false;" class="reservation-form">
-<label for="ime">Име и Презиме:</label>
-<input type="text" id="ime" required />
+        <h2>Закажи сервис</h2>
+        <form id="contactForm" class="reservation-form">
+            <label for="ime">Име и Презиме:</label>
+            <input type="text" id="ime" name="name" placeholder="Вашето име" required />
 
+            <label for="email">Е-пошта:</label>
+            <input type="email" id="email" name="email" placeholder="Вашата е-пошта" required />
 
-<label for="email">Е-пошта:</label>
-<input type="email" id="email" required />
+            <label for="telefon">Телефон:</label>
+            <input type="tel" id="telefon" name="phone" placeholder="Телефон" required />
 
+            <label for="datum">Датум на закажување:</label>
+            <input type="date" id="datum" name="date" required />
 
-<label for="telefon">Телефон:</label>
-<input type="tel" id="telefon" required />
+            <label for="marka_model">Марка и Модел на мотор:</label>
+            <input type="text" id="marka_model" name="motorcycle" placeholder="Марка и модел на мотор" required />
 
+            <label for="тип">Тип на сервис:</label>
+            <select id="тип" name="serviceType">
+                <option value="редовен">Редовен сервис</option>
+                <option value="поправка">Поправка</option>
+                <option value="дијагностика">Дијагностика</option>
+            </select>
 
-<label for="datum">Датум на закажување:</label>
-<input type="date" id="datum" required />
+            <label for="порака">Дополнителни информации:</label>
+            <textarea id="порака" name="message" placeholder="Порака"></textarea>
 
+            <button type="submit">Закажи</button>
+        </form>
+    </section>
 
-<label for="marka_model">Марка и Модел на мотор:</label>
-<input type="text" id="marka_model" required />
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init("GM5Py8refjzlvQGpO"); // your public key
+        })();
 
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+            e.preventDefault();
 
-<label for="тип">Тип на сервис:</label>
-<select id="тип">
-<option value="редовен">Редовен сервис</option>
-<option value="поправка">Поправка</option>
-<option value="дијагностика">Дијагностика</option>
-</select>
-
-
-<label for="порака">Дополнителни информации:</label>
-<textarea id="порака"></textarea>
-
-
-<button type="submit">Закажи</button>
-</form>
-</section>
-
-
-<script>
-function sendEmail() {
-const emailTo = "youremail@example.com"; // заменете со вашата е-пошта
-
-
-const ime = document.getElementById("ime").value;
-const email = document.getElementById("email").value;
-const telefon = document.getElementById("telefon").value;
-const datum = document.getElementById("datum").value;
-const marka_model = document.getElementById("marka_model").value;
-const tip = document.getElementById("тип").value;
-const poraka = document.getElementById("порака").value;
-
-
-const subject = encodeURIComponent("Ново закажување за сервис");
-const body = encodeURIComponent(
-`Име и Презиме: ${ime}\n` +
-`Е-пошта: ${email}\n` +
-`Телефон: ${telefon}\n` +
-`Датум: ${datum}\n` +
-`Марка и Модел: ${marka_model}\n` +
-`Тип на сервис: ${tip}\n` +
-`Порака: ${poraka}`
-);
-
-
-window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
-}
-</script>
-
-           
+            emailjs.sendForm("service_tdylz45", "template_1611g0c", this)
+            .then(() => {
+                alert("Вашата порака е успешно пратена!");
+                this.reset(); // clear form after sending
+            }, (error) => {
+                alert("Настана грешка. Обиди се повторно.");
+                console.log(error);
+            });
+        });
+    </script>
 
     <footer>
         © 2025 Мото Сервис Kumanovo. Сите права задржани.
