@@ -37,7 +37,10 @@
         <option value="Дијагностика">Дијагностика</option>
     </select>
 
-    <label for="poraka">Дополнителни информации:</label>
+	<label for="marka">Марка и модел:</label>
+    	<input type="text" id="text" required>
+
+    <label for="poraka">Дополнителна информација:</label>
     <textarea id="poraka"></textarea>
 
     <button type="submit">Закажи</button>
@@ -52,6 +55,7 @@ function sendEmail() {
     const telefon = document.getElementById("telefon").value;
     const datum = document.getElementById("datum").value;
     const tip = document.getElementById("tip").value;
+    const marka = document.getElementById("marka").value;
     const poraka = document.getElementById("poraka").value;
 
     const subject = "Ново Закажување за Сервис";
@@ -61,6 +65,7 @@ function sendEmail() {
         "Телефон: " + telefon + "%0D%0A" +
         "Датум: " + datum + "%0D%0A" +
         "Тип на сервис: " + tip + "%0D%0A" +
+	"Марка и модел: " + marka; +
         "Порака: " + poraka;
 
     window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
